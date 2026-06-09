@@ -43,6 +43,25 @@ python neo4j_to_rdf.py              # Default output written to `output.ttl`
 python neo4j_to_rdf.py graph.ttl    # Custom filename given as output path
 ```
 
+## Running with Docker
+
+Build the image from the repository root:
+
+```bash
+docker build -t jejuness:jj_neo4j_to_rdf_ttl https://github.com/EricBoix/jj_neo4j_to_rdf_ttl.git#:DockerContext
+```
+
+Run the extraction (adjust paths and `.env` as needed):
+
+```bash
+docker run --rm \
+  --network host \
+  -v `pwd`/result_data:/output \
+  --env-file .env \
+  jejuness:jj_neo4j_to_rdf_ttl \
+  neo4j_to_rdf.py /output/graph.ttl
+```
+
 ## RDF Mapping
 
 - **Namespaces**: `ex:` = `http://example.org/graph/`,
